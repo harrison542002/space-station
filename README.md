@@ -17,6 +17,13 @@ Then Open [http://localhost:3000](http://localhost:3000) with the browser to see
 - Custom Filters.
 - Secure API key (as it is using env variable)
 
+## Tech Stack
+
+- NextJS
+- React
+- TypeScript
+- TailwindCSS
+
 ## Figma Link
 
 - https://www.figma.com/design/SAtGT8054WHgvwrRyFc5jw/Space-Station?node-id=0-1&t=zlsPMmLrjocZAMB1-1
