@@ -135,7 +135,7 @@ const PriceChartList = ({ artifact }: Props) => {
       {status === "done" && data.length === 0 && (
         <p className="text-center py-4">No data found ...</p>
       )}
-      <div className="grid grid-cols-2 gap-4 py-4">
+      <div className="grid md:grid-cols-2 gap-4 py-4">
         {data.map((chartData: any) => (
           <LineChart
             key={chartData.name}

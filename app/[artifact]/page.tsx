@@ -13,10 +13,10 @@ const Page = async ({ params }: { params: Promise<{ artifact: string }> }) => {
   const { artifact } = await params;
 
   return (
-    <div className="py-4">
+    <div className="py-4 px-2">
       <Link
         href={"/"}
-        className="block w-fit text-black px-8 py-2 rounded-full shadow-lg text-lg bg-primary font-semibold"
+        className="block w-fit text-black px-4  md:px-8 py-2 rounded-full shadow-lg md:text-lg bg-primary font-semibold"
       >
         <span>Back</span>
       </Link>

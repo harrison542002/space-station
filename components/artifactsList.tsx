@@ -31,8 +31,8 @@ const SearchBox = ({
     setArtifact(artifactName);
   }, [artifactName]);
   return (
-    <div className="flex justify-center py-4">
-      <div className="bg-primary px-4 rounded-full w-[50%]">
+    <div className="flex justify-center py-1 md:py-4">
+      <div className="bg-primary px-4 rounded-full w-full md:w-[50%]">
         <input
           type="text"
           className="w-[94%] h-16 text-black text-lg px-1"
@@ -91,9 +91,11 @@ const ArtifactList = (props: Props) => {
   }, [artifactName]);
 
   return (
-    <div className="py-4">
+    <div className="py-4 px-2">
       <div>
-        <h1 className={`${luckiestGuy.className} text-center text-4xl`}>
+        <h1
+          className={`${luckiestGuy.className} text-center text-xl md:text-4xl`}
+        >
           Buy Special Artifacts from Various Space Station
         </h1>
         <SearchBox
@@ -101,7 +103,7 @@ const ArtifactList = (props: Props) => {
           setArtifactName={setArtifactName}
         />
       </div>
-      <div className="py-4 grid grid-cols-5 gap-4">
+      <div className="py-4 grid grid-cols-2 md:grid-cols-5 gap-4">
         {status === "done" && Object.entries(artifacts).length === 0 && (
           <div className="text-lg text-center w-full col-span-5">
             No artifacts found, please review if the artifact name is correct or
@@ -133,9 +135,9 @@ const SingleArtifactList = ({
       className="h-52 relative rounded-lg overflow-hidden shadow-lg group cursor-pointer"
     >
       <Image src={`/img/${name.toLowerCase()}.jpg`} fill alt={name} />
-      <div className="absolute h-0 group-hover:h-28 bottom-0 bg-black/80 w-full group-hover:p-2 transition-all duration-150 delay-75">
+      <div className="absolute md:h-0 p-2 md:p-0 group-hover:h-28 bottom-0 bg-black/80 w-full group-hover:p-2 transition-all duration-150 delay-75">
         <h2 className="text-xl font-bold py-2">{name}</h2>
-        <p className="text-sm">Available on: {stations.join(", ")}</p>
+        <p className="text-xs">Available on: {stations.join(", ")}</p>
       </div>
     </Link>
   );
