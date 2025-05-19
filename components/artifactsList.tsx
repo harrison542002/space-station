@@ -17,8 +17,6 @@ const luckiestGuy = Luckiest_Guy({
   variable: "--font-luckiest",
 });
 
-type Props = {};
-
 const SearchBox = ({
   artifactName,
   setArtifactName,
@@ -55,20 +53,26 @@ const SearchBox = ({
   );
 };
 
-const ArtifactList = (props: Props) => {
+const ArtifactList = () => {
   const [data, setData] = useState([]);
   const artifacts = useMemo<Record<string, string[]>>(() => {
     const map: Record<string, string[]> = {};
 
-    data.forEach((station: any) => {
-      station.artifacts.forEach((artifact: Artifact) => {
-        if (!map[artifact.name]) {
-          map[artifact.name] = [station.name];
-        } else {
-          map[artifact.name].push(station.name);
-        }
-      });
-    });
+    data.forEach(
+      (station: {
+        name: string;
+        price: number;
+        artifacts: { name: string; price: number; history: number[] }[];
+      }) => {
+        station.artifacts.forEach((artifact: Artifact) => {
+          if (!map[artifact.name]) {
+            map[artifact.name] = [station.name];
+          } else {
+            map[artifact.name].push(station.name);
+          }
+        });
+      }
+    );
 
     return map;
   }, [data]);
@@ -85,7 +89,7 @@ const ArtifactList = (props: Props) => {
         }
         setStatus("done");
       })
-      .catch((err) => {
+      .catch(() => {
         setStatus("done");
       });
   }, [artifactName]);

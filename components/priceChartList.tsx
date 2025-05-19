@@ -84,7 +84,7 @@ const PriceChartList = ({ artifact }: Props) => {
         setStatus("done");
         setData(res);
       })
-      .catch((err) => {
+      .catch(() => {
         setStatus("done");
       });
   }, [artifact, station]);
@@ -98,7 +98,18 @@ const PriceChartList = ({ artifact }: Props) => {
       setData((d) => {
         const data = [...d];
         return data.sort(
-          (a: any, b: any) => a.artifacts[0].price - b.artifacts[0].price
+          (
+            a: {
+              name: string;
+              price: number;
+              artifacts: { name: string; price: number; history: number[] }[];
+            },
+            b: {
+              name: string;
+              price: number;
+              artifacts: { name: string; price: number; history: number[] }[];
+            }
+          ) => a.artifacts[0].price - b.artifacts[0].price
         );
       });
     }
@@ -106,7 +117,18 @@ const PriceChartList = ({ artifact }: Props) => {
       setData((d) => {
         const data = [...d];
         return data.sort(
-          (a: any, b: any) => b.artifacts[0].price - a.artifacts[0].price
+          (
+            a: {
+              name: string;
+              price: number;
+              artifacts: { name: string; price: number; history: number[] }[];
+            },
+            b: {
+              name: string;
+              price: number;
+              artifacts: { name: string; price: number; history: number[] }[];
+            }
+          ) => b.artifacts[0].price - a.artifacts[0].price
         );
       });
     }
@@ -136,25 +158,31 @@ const PriceChartList = ({ artifact }: Props) => {
         <p className="text-center py-4">No data found ...</p>
       )}
       <div className="grid md:grid-cols-2 gap-4 py-4">
-        {data.map((chartData: any) => (
-          <LineChart
-            key={chartData.name}
-            {...{
-              currentPrice: chartData.artifacts[0].price,
-              station: chartData.name,
-              chartData: {
-                labels: getDateRange().map(formatDate),
-                datasets: [
-                  {
-                    label: "Last 10 days prices",
-                    data: chartData.artifacts[0].history,
-                    borderColor: "#9CCDDC",
-                  },
-                ],
-              },
-            }}
-          />
-        ))}
+        {data.map(
+          (chartData: {
+            name: string;
+            price: number;
+            artifacts: { name: string; price: number; history: number[] }[];
+          }) => (
+            <LineChart
+              key={chartData.name}
+              {...{
+                currentPrice: chartData.artifacts[0].price,
+                station: chartData.name,
+                chartData: {
+                  labels: getDateRange().map(formatDate),
+                  datasets: [
+                    {
+                      label: "Last 10 days prices",
+                      data: chartData.artifacts[0].history,
+                      borderColor: "#9CCDDC",
+                    },
+                  ],
+                },
+              }}
+            />
+          )
+        )}
       </div>
     </>
   );

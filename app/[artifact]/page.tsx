@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import { Luckiest_Guy } from "next/font/google";
 import PriceChartList from "@/components/priceChartList";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const luckiestGuy = Luckiest_Guy({
   weight: "400",

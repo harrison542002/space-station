@@ -2,9 +2,7 @@ import CustomLayout from "@/components/customLayout";
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
-
-const Nav = (props: Props) => {
+const Nav = () => {
   return (
     <div className="p-4 bg-primary shadow-lg">
       <CustomLayout>
