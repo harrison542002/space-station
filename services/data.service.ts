@@ -1,10 +1,13 @@
+import { getToken } from "@/services/auth.service";
+
 export const getTradeData = async (queries: {
   station?: string;
   artifact?: string;
   historic?: string;
 }) => {
   try {
-    const token = localStorage.getItem("ttk");
+    let token = localStorage.getItem("ttk");
+
     const queryString = Object.entries(queries)
       .filter(([, value]) => value != null && value !== "")
       .map(
@@ -21,6 +24,11 @@ export const getTradeData = async (queries: {
     if (res.status === 404) {
       return [];
     }
+
+    if (res.status === 403) {
+      window.alert("Session Expired, please refresh the broswer.");
+    }
+
     const data = await res.json();
     return data;
   } catch (error) {
