@@ -26,7 +26,9 @@ export const getTradeData = async (queries: {
     }
 
     if (res.status === 403) {
+      localStorage.removeItem("ttk");
       window.alert("Session Expired, please refresh the broswer.");
+      window.location.reload();
     }
 
     const data = await res.json();
