@@ -1,5 +1,3 @@
-import { getToken } from "@/services/auth.service";
-
 export const getTradeData = async (queries: {
   station?: string;
   artifact?: string;
@@ -27,7 +25,6 @@ export const getTradeData = async (queries: {
 
     if (res.status === 403) {
       localStorage.removeItem("ttk");
-      window.alert("Session Expired, please refresh the broswer.");
       window.location.reload();
     }
 

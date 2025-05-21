@@ -154,35 +154,36 @@ const PriceChartList = ({ artifact }: Props) => {
       {status === "loading" && (
         <p className="text-center py-4">Loading Charts ...</p>
       )}
-      {status === "done" && data.length === 0 && (
+      {status === "done" && data && data?.length === 0 && (
         <p className="text-center py-4">No data found ...</p>
       )}
       <div className="grid md:grid-cols-2 gap-4 py-4">
-        {data.map(
-          (chartData: {
-            name: string;
-            price: number;
-            artifacts: { name: string; price: number; history: number[] }[];
-          }) => (
-            <LineChart
-              key={chartData.name}
-              {...{
-                currentPrice: chartData.artifacts[0].price,
-                station: chartData.name,
-                chartData: {
-                  labels: getDateRange().map(formatDate),
-                  datasets: [
-                    {
-                      label: "Last 10 days prices",
-                      data: chartData.artifacts[0].history,
-                      borderColor: "#9CCDDC",
-                    },
-                  ],
-                },
-              }}
-            />
-          )
-        )}
+        {data &&
+          data.map(
+            (chartData: {
+              name: string;
+              price: number;
+              artifacts: { name: string; price: number; history: number[] }[];
+            }) => (
+              <LineChart
+                key={chartData.name}
+                {...{
+                  currentPrice: chartData.artifacts[0].price,
+                  station: chartData.name,
+                  chartData: {
+                    labels: getDateRange().map(formatDate),
+                    datasets: [
+                      {
+                        label: "Last 10 days prices",
+                        data: chartData.artifacts[0].history,
+                        borderColor: "#9CCDDC",
+                      },
+                    ],
+                  },
+                }}
+              />
+            )
+          )}
       </div>
     </>
   );

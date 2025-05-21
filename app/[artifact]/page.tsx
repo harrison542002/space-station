@@ -8,6 +8,7 @@ const luckiestGuy = Luckiest_Guy({
   subsets: ["latin"],
   variable: "--font-luckiest",
 });
+
 const Page = async ({ params }: { params: Promise<{ artifact: string }> }) => {
   const { artifact } = await params;
 
