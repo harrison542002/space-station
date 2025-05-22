@@ -13,18 +13,19 @@ export const getTradeData = async (queries: {
           `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
       )
       .join("&");
+
     const res = await fetch("/get-data?" + queryString, {
       headers: {
         jfwt: token || "",
         Referer: "https://api.jellyfaas.com",
       },
     });
+
     if (res.status === 404) {
       return [];
     }
 
     if (res.status === 403) {
-      localStorage.removeItem("ttk");
       window.location.reload();
     }
 
@@ -32,7 +33,6 @@ export const getTradeData = async (queries: {
     return data;
   } catch (error) {
     console.log(error);
-
     return null;
   }
 };

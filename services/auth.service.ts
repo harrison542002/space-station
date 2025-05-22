@@ -6,6 +6,7 @@ export const getToken = async () => {
         headers: {
           "x-jf-apikey": process.env.TOKEN || "",
         },
+        cache: 'no-store' 
       }
     );
     const data = await res.json();
